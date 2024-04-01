@@ -1,7 +1,6 @@
 import { applyDecorators } from "@nestjs/common";
 import {
   ApiExtraModels,
-  ApiOkResponse,
   ApiQuery,
   ApiResponse,
   getSchemaPath,
@@ -85,14 +84,14 @@ export function StandardResponse<TModel extends ResponseModelType>({
         required: false,
         description: `How many items to retrieve${limitHelpText}:`,
         // example: defaultLimit,
-        // schema: { type: 'integer', minimum: minLimit, maximum: maxLimit },
+        schema: { type: "integer", minimum: minLimit, maximum: maxLimit },
       }),
       ApiQuery({
         name: "offset",
         required: false,
         description: "How many items to skip from beggining of list:",
         // example: offsetDefault,
-        // schema: { type: 'integer', minimum: 0 },
+        schema: { type: "integer", minimum: 0 },
       })
     );
   }
@@ -106,8 +105,8 @@ export function StandardResponse<TModel extends ResponseModelType>({
         name: "sort",
         required: false,
         description: `A list of properties used to sort the results. Properties must be separated by comma, and optionally preceded by a minus sign. (Ex: '-popularity,title' )`,
-        // example: ['-popularity,name'],
-        // schema: { type: 'string' },
+        example: ["-popularity,name"],
+        schema: { type: "string" },
       })
     );
   }
@@ -120,19 +119,9 @@ export function StandardResponse<TModel extends ResponseModelType>({
       ApiQuery({
         name: "filter",
         required: false,
-        description: `Restricts results based on filters. A filter is composed of a property name, followed by an operator and a value. (Ex: 'country==Italy'). Filters can be combined using a comma (,) for the OR operation, or a semi-colon (;) for the AND operation. (Ex: to filter by country being equal to Italy or Germany, and year 2010 and later: 'country==Italy,country==Germany;year>=2010')
-        Possible operators are:
-        ==	Equals
-        !=	Not equals
-        <=	Less than or equal
-        <	Less than
-        =@	Contains
-        !@	Does not contain
-        =^	Starts with
-        =$	Ends with.
-        These rules are similar to APIs like Google Analytics or Matomo Analytics. For more info, see: https://developers.google.com/analytics/devguides/reporting/core/v3/reference#filters and https://developer.matomo.org/api-reference/reporting-api-segmentation`,
-        // example: 'country==Italy,country==Germany;year>=2010',
-        // schema: { type: 'string' },
+        description: `Restricts results based on filters. A filter is composed of a property name, followed by an operator and a value.`,
+        example: "country==Italy,country==Germany;year>=2010",
+        schema: { type: "string" },
       })
     );
   }

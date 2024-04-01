@@ -1,13 +1,13 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { FilteringInfoDto } from './filtering-info.dto';
-import { PaginationInfoDto } from './pagination-info.dto';
-import { SortingInfoDto } from './sorting-info.dto';
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { FilteringInfoDto } from "./filtering-info.dto";
+import { PaginationInfoDto } from "./pagination-info.dto";
+import { SortingInfoDto } from "./sorting-info.dto";
 
 export class StandardResponseDto<TData> {
   @ApiProperty()
   readonly success?: boolean = true;
 
-  @ApiProperty({ default: false })
+  @ApiPropertyOptional({ default: false })
   readonly isArray?: boolean;
 
   @ApiPropertyOptional()
